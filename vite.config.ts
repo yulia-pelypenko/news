@@ -6,7 +6,6 @@ import compression from "vite-plugin-compression"
 import Inspect from "vite-plugin-inspect"
 import { visualizer } from "rollup-plugin-visualizer"
 import terser from "@rollup/plugin-terser"
-import virtual from "vite-plugin-virtual"
 
 export default defineConfig(() => ({
   plugins: [
@@ -16,7 +15,6 @@ export default defineConfig(() => ({
     compression(),
     Inspect(),
     visualizer(),
-    virtual(),
   ],
   build: {
     rollupOptions: {
