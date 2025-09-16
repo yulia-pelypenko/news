@@ -10,7 +10,8 @@
 		"lint": "biome lint .",
 		"check": "biome check .",
 		"check:fix": "biome check --write .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"react": "^19.1.1",
@@ -22,6 +23,7 @@
 		"@types/react": "^19.1.10",
 		"@types/react-dom": "^19.1.7",
 		"@vitejs/plugin-react": "^5.0.0",
+		"husky": "^9.1.7",
 		"rollup-plugin-visualizer": "^6.0.3",
 		"terser": "^5.44.0",
 		"typescript": "~5.8.3",
