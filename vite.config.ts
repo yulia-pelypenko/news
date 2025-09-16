@@ -1,6 +1,6 @@
 import terser from "@rollup/plugin-terser";
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite"
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
@@ -10,8 +10,8 @@ import svgr from "vite-plugin-svgr";
 
 export default defineConfig(() => ({
 	plugins: [
-    react(),
-    tailwindcss(),
+		react(),
+		tailwindcss(),
 		svgr(),
 		checker({ typescript: true }),
 		compression(),
