@@ -1,5 +1,5 @@
 export enum Routes {
-  Login = '/login',
-  Register = '/register',
-  News = './news',
+	Login = "/login",
+	Register = "/register",
+	News = "./news",
 }
