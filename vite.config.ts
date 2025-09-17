@@ -7,6 +7,8 @@ import checker from "vite-plugin-checker";
 import compression from "vite-plugin-compression";
 import Inspect from "vite-plugin-inspect";
 import svgr from "vite-plugin-svgr";
+import path from "path";
+
 
 export default defineConfig(() => ({
 	plugins: [
@@ -27,5 +29,13 @@ export default defineConfig(() => ({
 				}),
 			],
 		},
-	},
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      modules: path.resolve(__dirname, "src/modules"),
+      assets: path.resolve(__dirname, "src/assets"),
+      config: path.resolve(__dirname, "src/config"),
+    },
+  },
 }));
