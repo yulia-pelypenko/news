@@ -1,3 +1,4 @@
+import path from "node:path";
 import terser from "@rollup/plugin-terser";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
@@ -26,6 +27,14 @@ export default defineConfig(() => ({
 					compress: { drop_console: true, drop_debugger: true },
 				}),
 			],
+		},
+	},
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "src"),
+			modules: path.resolve(__dirname, "src/modules"),
+			assets: path.resolve(__dirname, "src/assets"),
+			config: path.resolve(__dirname, "src/config"),
 		},
 	},
 }));
