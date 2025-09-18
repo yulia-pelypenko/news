@@ -25,8 +25,9 @@ const AuthNavigation: FC = () => {
 					}`
 				}
 			>
-				Login <span>/</span>
+				Login
 			</NavLink>
+			<span>/</span>
 			<NavLink
 				to="/register"
 				className={({ isActive }) =>
