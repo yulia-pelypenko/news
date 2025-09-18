@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { MainLayout } from "@/modules/layout/components";
-import { LoginForm } from "../../components";
+import LoginForm from "../../components/LoginForm";
 
 const LoginPage: FC = () => {
 	return (
