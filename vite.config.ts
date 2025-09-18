@@ -8,6 +8,7 @@ import checker from "vite-plugin-checker";
 import compression from "vite-plugin-compression";
 import Inspect from "vite-plugin-inspect";
 import svgr from "vite-plugin-svgr";
+import virtualModules from "./src/plugins/virtual_modules.plugin";
 
 export default defineConfig(() => ({
 	plugins: [
@@ -18,6 +19,7 @@ export default defineConfig(() => ({
 		compression(),
 		Inspect(),
 		visualizer(),
+		virtualModules(),
 	],
 	build: {
 		rollupOptions: {
