@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { MainLayout } from "@/modules/layout/components";
-import { SignUpForm } from "../../components";
+import SignUpForm from "../../components/SignUpForm";
 
 const SignUpPage: FC = () => {
 	return (
