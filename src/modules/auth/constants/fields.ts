@@ -1,6 +1,6 @@
 import { ControlledInput } from "modules/common/components";
 
-export const AuthFields = {
+export const UserFields = {
 	Email: "email",
 	Password: "password",
 	Name: "name",
@@ -9,7 +9,7 @@ export const AuthFields = {
 export const nameField = {
 	label: "Name",
 	placeholder: "Enter your name",
-	name: AuthFields.Name,
+	name: UserFields.Name,
 	Component: ControlledInput,
 	type: "text",
 	errorsEnabled: true,
@@ -18,7 +18,7 @@ export const nameField = {
 export const emailField = {
 	label: "Email",
 	placeholder: "Enter your email",
-	name: AuthFields.Email,
+	name: UserFields.Email,
 	Component: ControlledInput,
 	type: "email",
 	errorsEnabled: true,
@@ -27,7 +27,7 @@ export const emailField = {
 export const passwordField = {
 	label: "Password",
 	placeholder: "Enter your password",
-	name: AuthFields.Password,
+	name: UserFields.Password,
 	Component: ControlledInput,
 	type: "password",
 	errorsEnabled: true,
