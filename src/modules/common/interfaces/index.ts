@@ -9,4 +9,5 @@ export interface IRoute {
 	Component: ComponentType;
 	type: RouteType;
 	path: string;
+	lazy: boolean;
 }
