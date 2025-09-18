@@ -1,5 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css";
+import { Routes as AppRoutes } from "@/config/routes";
 import modules from "./modules";
 import { AuthRoute, NoAuthRoute, PublicRoute } from "./modules/auth/components";
 import { RouteType } from "./modules/auth/enums";
@@ -14,6 +15,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="/" element={<Navigate to={AppRoutes.News} replace />} />
 				{modules.routes?.map(({ path, Component, type }) => {
 					const CurrentRoute = mappedRoutes[type];
 					return (
