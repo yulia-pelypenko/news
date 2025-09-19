@@ -6,7 +6,9 @@ const NewsListPage: FC = () => {
 	return (
 		<MainLayout>
 			<section className="p-6">
-				<h1 className="text-2xl font-bold mb-4">Новини</h1>
+				<h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+					Новини
+				</h1>
 				<NewsList />
 			</section>
 		</MainLayout>
