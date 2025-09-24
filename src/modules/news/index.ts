@@ -15,7 +15,7 @@ export const newsModule: IModule = {
 			lazy: false,
 		},
 		{
-			path: "/news/:id",
+			path: "/news/:link",
 			Component: NewsPage,
 			type: RouteType.Public,
 			lazy: true,
