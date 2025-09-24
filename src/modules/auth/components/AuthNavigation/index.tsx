@@ -1,14 +1,14 @@
 import type { FC } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const AuthNavigation: FC = () => {
-	//заглушка
-	const user = null;
+	const user = useAuthStore((state) => state.user);
 
 	if (user) {
 		return (
 			<div className="text-gray-700 dark:text-gray-300">
-				Hello, <span className="font-semibold">{user}</span>
+				Hello, <span className="font-semibold">{user.name}</span>
 			</div>
 		);
 	}
