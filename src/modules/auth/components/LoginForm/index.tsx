@@ -1,8 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "@/modules/common/components";
+import { Button, Loader } from "@/modules/common/components";
+import FormErrorMessage from "@/modules/common/components/FormErrorMessage.ts";
 import { emailField, passwordField } from "../../constants/fields";
+import { useLogin } from "../../hooks/useLogin";
 import type { loginData } from "../../validation/schemas";
 import { loginSchema } from "../../validation/schemas";
 
@@ -15,8 +17,10 @@ const LoginForm: FC = () => {
 		resolver: zodResolver(loginSchema),
 	});
 
+	const { mutate: login, isPending, error } = useLogin();
+
 	const onSubmit = (data: loginData) => {
-		console.log("SignIn data:", data);
+		login(data);
 	};
 
 	const fields = [emailField, passwordField];
@@ -53,11 +57,13 @@ const LoginForm: FC = () => {
 			))}
 
 			<Button
+				disabled={isPending}
 				type="submit"
 				className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
 			>
-				Login
+				{isPending ? <Loader size="sm" /> : "Login"}
 			</Button>
+			<div className="h-1">{error && <FormErrorMessage error={error} />}</div>
 		</form>
 	);
 };
