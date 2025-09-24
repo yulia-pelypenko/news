@@ -1,12 +1,13 @@
 import { Routes } from "config/routes";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore";
 
 type AuthRouteProps = {
 	Component: React.ComponentType;
 };
 
 const AuthRoute = ({ Component }: AuthRouteProps) => {
-	const user = null;
+	const user = useAuthStore((state) => state.user);
 	const location = useLocation();
 
 	if (!user) {

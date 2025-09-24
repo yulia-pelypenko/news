@@ -1,11 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "@/modules/common/components";
+import { Button, Loader } from "@/modules/common/components";
+import FormErrorMessage from "@/modules/common/components/FormErrorMessage.ts";
 import { emailField, nameField, passwordField } from "../../constants/fields";
+import { useRegister } from "../../hooks/useRegister";
 import { type SignUpData, signUpSchema } from "../../validation/schemas";
 
 const SignUpForm: FC = () => {
+	const { mutate: register, isPending, error } = useRegister();
+
 	const {
 		control,
 		handleSubmit,
@@ -15,7 +19,7 @@ const SignUpForm: FC = () => {
 	});
 
 	const onSubmit = (data: SignUpData) => {
-		console.log("SignUp data:", data);
+		register(data);
 	};
 
 	const fields = [nameField, emailField, passwordField];
@@ -57,8 +61,9 @@ const SignUpForm: FC = () => {
 				type="submit"
 				className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
 			>
-				Register
+				{isPending ? <Loader size="sm" /> : "	Register"}
 			</Button>
+			<div className="h-1">{error && <FormErrorMessage error={error} />}</div>
 		</form>
 	);
 };
