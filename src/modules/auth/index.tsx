@@ -10,13 +10,13 @@ export const authModule: IModule = {
 		{
 			path: "/login",
 			Component: LoginPage,
-			type: RouteType.Public,
+			type: RouteType.NoAuth,
 			lazy: true,
 		},
 		{
 			path: "/register",
 			Component: SignUpPage,
-			type: RouteType.Public,
+			type: RouteType.NoAuth,
 			lazy: true,
 		},
 	],
