@@ -1,0 +1,16 @@
+export const events = [
+	"auctionInit",
+	"beforeRequestBids",
+	"bidRequested",
+	"bidResponse",
+	"bidRejected",
+	"bidTimeout",
+	"bidWon",
+	"auctionEnd",
+	"adRenderSucceeded",
+	"adRenderFailed",
+	"auctionDebug",
+	"setTargeting",
+	"bidderDone",
+	"bidderError",
+];

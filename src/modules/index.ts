@@ -1,8 +1,9 @@
 import { authModule } from "./auth";
 import type { IModule, IRoute } from "./common/interfaces";
 import { newsModule } from "./news";
+import { prebidModule } from "./prebid";
 
-const modules = [authModule, newsModule];
+const modules = [authModule, newsModule, prebidModule];
 
 const mergedModules: IModule = {
 	routes: modules.reduce((acc: IRoute[], { routes }) => {
