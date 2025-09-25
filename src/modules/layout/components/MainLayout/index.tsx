@@ -12,10 +12,12 @@ const MainLayout: FC<Props> = ({ children }) => {
 				<Header />
 				<div className="flex justify-center gap-4 py-4">
 					<iframe
+						title="Advertisement slot left"
 						id="add-frame-left"
 						className="flex justify-center items-center border border-dashed border-gray-400 w-[320px] h-[270px] overflow-hidden"
 					/>
 					<iframe
+						title="Advertisement slot right"
 						id="add-frame-right"
 						className="flex justify-center items-center border border-dashed border-gray-400 w-[320px] h-[270px] overflow-hidden"
 					/>
