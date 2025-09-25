@@ -1,5 +1,9 @@
+import prebidUrl from "/prebid10.10.0.js?url";
 import { events } from "./const";
 import { addLog } from "./utils/addLog";
+import { injectPrebidScript } from "./utils/injectPrebidScript";
+
+injectPrebidScript(prebidUrl);
 
 const adUnits = [
 	{
