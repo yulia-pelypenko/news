@@ -1,7 +1,8 @@
-import type { Plugin } from "vite";
+import { loadEnv, type Plugin } from "vite";
 
 export default function virtualModules(): Plugin {
-	const modules = ["auth", "news", "common"];
+	const env = loadEnv("", process.cwd(), "");
+	const modules = (env.VITE_MODULES || "").split(",");
 
 	return {
 		name: "virtual-modules",
@@ -11,7 +12,9 @@ export default function virtualModules(): Plugin {
 		},
 		load(id) {
 			if (id === "virtual:plugins") {
-				return modules.map((m) => `import "@/modules/${m}";`).join("\n");
+				return modules
+					.map((m) => `import '/src/modules/${m}/${m}';`)
+					.join("\n");
 			}
 			return null;
 		},
