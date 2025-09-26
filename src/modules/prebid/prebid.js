@@ -45,12 +45,23 @@ window.pbjs.que.push(() => {
 	// bidWon приходит только после факта показа креатива.Использовать его для рендера нельзя -
 	// на этом этапе объявление уже отрисовано.Поэтому, если повесить рендер на bidWon,
 	// он никогда не сработает.
-	window.pbjs.onEvent("bidResponse", (bid) => {
-		const iframe = document.getElementById(bid.adUnitCode);
-		if (iframe) {
-			const doc = iframe.contentWindow.document;
-			pbjs.renderAd(doc, bid.adId);
-		}
+
+	window.pbjs.requestBids({
+		timeout: 1000,
+		bidsBackHandler: () => {
+			adUnits.forEach((unit) => {
+				// Гарантировано получаем победителя(описала в README)
+				const bids = window.pbjs.getHighestCpmBids(unit.code);
+
+				if (bids.length > 0) {
+					const iframe = document.getElementById(unit.code);
+					if (iframe) {
+						const doc = iframe.contentWindow.document;
+						window.pbjs.renderAd(doc, bids[0].adId);
+					}
+				}
+			});
+		},
 	});
 
 	events.forEach((ev) => {
@@ -58,6 +69,4 @@ window.pbjs.que.push(() => {
 			addLog(ev, data);
 		});
 	});
-
-	window.pbjs.requestBids({ timeout: 1000 });
 });
