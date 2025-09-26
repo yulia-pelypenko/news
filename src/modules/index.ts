@@ -1,14 +1,27 @@
-import { authModule } from "./auth";
-import type { IModule, IRoute } from "./common/interfaces";
-import { newsModule } from "./news";
-import { prebidModule } from "./prebid";
+import type { IModule } from "./common/interfaces";
 
-const modules = [authModule, newsModule, prebidModule];
+const enabledModules = (import.meta.env.VITE_MODULES || "")
+	.split(",")
+	.map((moduleName: string) => moduleName.trim())
+	.filter(Boolean);
 
-const mergedModules: IModule = {
-	routes: modules.reduce((acc: IRoute[], { routes }) => {
-		return routes ? [...acc, ...routes] : acc;
-	}, []),
+export const modules: IModule[] = [];
+
+for (const name of enabledModules) {
+	try {
+		const module = await import(`./${name}/index.ts`);
+		if (module?.default) {
+			modules.push(module.default);
+		}
+	} catch {
+		console.warn(
+			`[registry] Module "${name}" not found at ./src/modules/${name}/index.module.ts`,
+		);
+	}
+}
+
+export const mergedModule: IModule = {
+	routes: modules.flatMap((m) => m.routes ?? []),
 };
 
-export default mergedModules;
+export default mergedModule;

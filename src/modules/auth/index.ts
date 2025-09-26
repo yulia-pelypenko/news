@@ -5,7 +5,7 @@ import { RouteType } from "./enums";
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 
-export const authModule: IModule = {
+const authModule: IModule = {
 	routes: [
 		{
 			path: "/login",
@@ -21,3 +21,5 @@ export const authModule: IModule = {
 		},
 	],
 };
+
+export default authModule;

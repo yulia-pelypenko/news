@@ -3,7 +3,7 @@ import { RouteType } from "../auth/enums";
 import type { IModule } from "../common/interfaces";
 import AuctionLogsPage from "./pages/AuctionLogsPage";
 
-export const prebidModule: IModule = {
+const prebidModule: IModule = {
 	routes: [
 		{
 			path: Routes.AuctionLogs,
@@ -13,3 +13,5 @@ export const prebidModule: IModule = {
 		},
 	],
 };
+
+export default prebidModule;
