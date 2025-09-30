@@ -6,7 +6,7 @@ import { NewsListPage } from "./pages";
 
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 
-export const newsModule: IModule = {
+const newsModule: IModule = {
 	routes: [
 		{
 			path: Routes.News,
@@ -22,3 +22,5 @@ export const newsModule: IModule = {
 		},
 	],
 };
+
+export default newsModule;

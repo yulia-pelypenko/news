@@ -1,69 +1,35 @@
-# React + TypeScript + Vite
+# 📖 Работа с рендером рекламы в Prebid.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- В проекте мы тестировали два подхода к рендеру баннеров в Prebid.js и зафиксировали наш выбор для текущей конфигурации.
 
-Currently, two official plugins are available:
+## 1. `pbjs.getHighestCpmBids()`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Как это работает
+- После завершения аукциона можно получить победителей по каждому `adUnit`:
+- Метод возвращает массив победивших ставок по каждому `adUnit`.
 
-## Expanding the ESLint configuration
+#### Плюсы
+- Удобно при нескольких адаптерах или нескольких форматах (баннер, видео).
+- Рендер происходит после окончания аукциона - ниже риск отрендерить неверный креатив.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### Минусы
+- Даже при одном адаптере возвращается массив - требуется проверка.
+- Для простых кейсов выглядит избыточно.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 2. `pbjs.onEvent('bidResponse')`
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Как это работает
+- Подписываемся на событие ответа бида и рендерим сразу по приходу:
+- Событие срабатывает каждый раз, когда адаптер возвращает ставку.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### Плюсы
+- Срабатывает мгновенно по приходу ответа.
+- Просто использовать, если один адаптер и один формат.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+#### Минусы
+- Приходит до окончания аукциона.
+- Если адаптеров несколько, можно отрендерить **не победителя**.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Почему не `bidWon`
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+-Событие `bidWon` возникает после того, как победитель уже отрендерился. Оно подходит для аналитики и логирования (пост‑событие), но не для фактической вставки рекламы.
