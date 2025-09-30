@@ -1,6 +1,7 @@
 import { lazy } from "react";
+import { Routes } from "@/config/routes";
 import type { IModule } from "../common/interfaces";
-import { RouteType } from "./enums";
+import { RouteType } from "./constants/routeType";
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
@@ -8,13 +9,13 @@ const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const authModule: IModule = {
 	routes: [
 		{
-			path: "/login",
+			path: Routes.Login,
 			Component: LoginPage,
 			type: RouteType.NoAuth,
 			lazy: true,
 		},
 		{
-			path: "/register",
+			path: Routes.Register,
 			Component: SignUpPage,
 			type: RouteType.NoAuth,
 			lazy: true,

@@ -1,16 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Loader } from "@/modules/common/components";
+import { Button, Input, Loader } from "@/modules/common/components";
 import FormErrorMessage from "@/modules/common/components/FormErrorMessage.ts";
 import { emailField, passwordField } from "../../constants/fields";
 import { useLogin } from "../../hooks/useLogin";
-import type { loginData } from "../../validation/schemas";
-import { loginSchema } from "../../validation/schemas";
+import { type loginData, loginSchema } from "../../validation/schemas";
 
 const LoginForm: FC = () => {
 	const {
-		control,
+		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<loginData>({
@@ -39,15 +38,15 @@ const LoginForm: FC = () => {
 					>
 						{field.label}
 					</label>
-					<field.Component
-						controlled={{ name: field.name, control }}
+					<Input
+						{...register(field.name as keyof loginData)}
 						id={field.name}
 						placeholder={field.placeholder}
 						type={field.type}
 						className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100"
 					/>
 					<div className="h-2">
-						{field.errorsEnabled && errors[field.name] && (
+						{errors[field.name] && (
 							<p className="text-xs text-red-500">
 								{errors[field.name]?.message}
 							</p>
@@ -63,6 +62,7 @@ const LoginForm: FC = () => {
 			>
 				{isPending ? <Loader size="sm" /> : "Login"}
 			</Button>
+
 			<div className="h-1">{error && <FormErrorMessage error={error} />}</div>
 		</form>
 	);
