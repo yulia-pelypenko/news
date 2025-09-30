@@ -1,5 +1,5 @@
 import { AuthRoute, NoAuthRoute, PublicRoute } from "@/modules/auth/components";
-import { RouteType } from "@/modules/auth/enums";
+import { RouteType } from "@/modules/auth/constants/routeType";
 
 export const mappedRouteGuards = {
 	[RouteType.Auth]: AuthRoute,

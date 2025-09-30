@@ -6,7 +6,7 @@ type AdSlotProps = {
 	height?: number;
 };
 
-const AdSlot: FC<AdSlotProps> = ({ id, width = 320, height = 270 }) => {
+const AdSlot: FC<AdSlotProps> = ({ id, width = 300, height = 250 }) => {
 	return (
 		<iframe
 			title={`Advertisement slot ${id}`}

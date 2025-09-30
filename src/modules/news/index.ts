@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Routes } from "@/config/routes";
-import { RouteType } from "../auth/enums";
+import { RouteType } from "../auth/constants/routeType";
 import type { IModule } from "../common/interfaces";
 import { NewsListPage } from "./pages";
 
@@ -15,7 +15,7 @@ const newsModule: IModule = {
 			lazy: false,
 		},
 		{
-			path: "/news/:link",
+			path: `${Routes.News}/:link`,
 			Component: NewsPage,
 			type: RouteType.Public,
 			lazy: true,

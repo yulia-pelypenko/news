@@ -1,5 +1,5 @@
-import { Routes } from "config/routes";
 import { Navigate, useLocation } from "react-router-dom";
+import { Routes } from "@/config/routes";
 import { useAuthStore } from "../../store/useAuthStore";
 
 type AuthRouteProps = {

@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@/modules/common/components";
-import { MainLayout } from "@/modules/layout/components";
 import { useNews } from "../../hooks/useNews";
 
 const NewsPage: FC = () => {
@@ -21,28 +20,27 @@ const NewsPage: FC = () => {
 		);
 	}
 	return (
-		<MainLayout>
-			<article className="p-6 bg-white dark:bg-gray-800 rounded shadow transition">
-				<h1 className="text-4xl font-bold my-8 text-gray-900 dark:text-gray-100">
-					{news.title}
-				</h1>
-				<img
-					src={news.image}
-					alt={news.title}
-					className="w-full h-120 object-cover rounded"
-				/>
-				<div className="mt-4 space-y-4">
-					{news.content.map((text, idx) => (
-						<p
-							key={String(idx)}
-							className="text-gray-700 dark:text-gray-300 leading-relaxed"
-						>
-							{text}
-						</p>
-					))}
-				</div>
-			</article>
-		</MainLayout>
+		<article className="p-6 bg-white dark:bg-gray-800 rounded shadow transition">
+			<h1 className="text-4xl font-bold my-8 text-gray-900 dark:text-gray-100">
+				{news.title}
+			</h1>
+			<img
+				src={news.image}
+				alt={news.title}
+				loading="lazy"
+				className="w-full h-120 object-cover rounded"
+			/>
+			<div className="mt-4 space-y-4">
+				{news.content.map((text, idx) => (
+					<p
+						key={String(idx)}
+						className="text-gray-700 dark:text-gray-300 leading-relaxed"
+					>
+						{text}
+					</p>
+				))}
+			</div>
+		</article>
 	);
 };
 

@@ -48,7 +48,7 @@ const SignUpForm: FC = () => {
 					/>
 
 					<div className="h-2">
-						{field.errorsEnabled && errors[field.name] && (
+						{errors[field.name] && (
 							<p className="text-xs text-red-500">
 								{errors[field.name]?.message}
 							</p>
