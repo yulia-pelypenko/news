@@ -6,12 +6,12 @@ type AdSlotProps = {
 	height?: number;
 };
 
-const AdSlot: FC<AdSlotProps> = ({ id, width = 300, height = 250 }) => {
+const AdSlot: FC<AdSlotProps> = ({ id, width = 320, height = 270 }) => {
 	return (
 		<iframe
 			title={`Advertisement slot ${id}`}
 			id={id}
-			className={`border border-dashed border-gray-400 overflow-hidden w-[${width}px] h-[${height}px]`}
+			className={`flex justify-center items-center border border-dashed border-gray-400 w-[${width}px] h-[${height}px] overflow-hidden`}
 		/>
 	);
 };
