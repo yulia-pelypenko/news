@@ -1,11 +1,11 @@
 import type { ComponentType } from "react";
-import type { RouteType } from "@/modules/auth/constants/routeType";
+import type { RouteType as RouteTypeConst } from "@/modules/auth/constants/routeType";
 
 export interface IModule {
 	routes: IRoute[];
 }
 
-type RouteType = (typeof RouteType)[keyof typeof RouteType];
+type RouteType = (typeof RouteTypeConst)[keyof typeof RouteTypeConst];
 
 export interface IRoute {
 	Component: ComponentType;
